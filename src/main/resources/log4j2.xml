@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="com.mine.log">
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}[%t] %-5p %c %msg%xEx%n" />
+        </Console>
+
+        <Kafka name="Kafka" topic="test1">
+            <JsonPartternLayout system = "mlog" pattern = "[%t] %c %msg%xEx%n"/>
+            <Property name="bootstrap.servers">localhost:9092</Property>
+        </Kafka>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Kafka"/>
+        </Root>
+    </Loggers>
+</Configuration>
