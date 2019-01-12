@@ -36,13 +36,18 @@ public class JsonPartternLayout extends AbstractStringLayout {
 
     private String system;
 
-    private String ip;
+    private static String ip;
 
     private static SimpleDateFormat utcFormater;
 
     static {
         utcFormater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         utcFormater.setTimeZone(TimeZone.getTimeZone("UTC"));//时区定义并进行时间获取
+        try {
+            ip = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            //ignore
+        }
     }
 
 
@@ -83,11 +88,6 @@ public class JsonPartternLayout extends AbstractStringLayout {
                 .withFooter(footerPattern)
                 .build();
         this.system = system;
-        try {
-            this.ip = InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            //ignore
-        }
 
     }
 

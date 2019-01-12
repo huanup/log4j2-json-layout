@@ -74,6 +74,8 @@ public class JsonLogBean {
         this.time = time;
     }
 
+    public JsonLogBean(){}
+
     public JsonLogBean(String system, String ip,String message, String level, String time) {
         this.system = system;
         this.ip = ip;
